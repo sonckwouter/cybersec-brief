@@ -1,0 +1,32 @@
+======================================================================
+{{ topic_name|upper }} - DAILY INTELLIGENCE BRIEF
+{{ current_date }}
+======================================================================
+
+TODAY'S FOCUS:
+{{ digest.daily_theme }}
+
+----------------------------------------------------------------------
+TOP {{ digest.items|length }} CURATED STORIES:
+----------------------------------------------------------------------
+
+{% for item in digest.items %}
+[{{ loop.index }}] {{ item.title }}
+Category: {{ item.category }} | Source: {{ item.source_name }}
+Link: {{ item.link }}
+
+Summary:
+{{ item.summary }}
+
+{% if item.key_points %}
+Key Takeaways:
+{% for pt in item.key_points %}
+  - {{ pt }}
+{% endfor %}
+{% endif %}
+
+----------------------------------------------------------------------
+{% endfor %}
+
+Delivered automatically by Morning News Bot.
+Generated on {{ current_date }} at {{ current_time }} UTC.

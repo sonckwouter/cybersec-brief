@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ topic_name }} Daily Intelligence Brief</title>
+  <style>
+    /* Reset & Base */
+    body, p, h1, h2, h3, ul, li {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f1f5f9;
+      color: #1e293b;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 24px 12px;
+    }
+    .wrapper {
+      max-width: 660px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+      border: 1px solid #e2e8f0;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #ffffff;
+      padding: 32px 28px 28px 28px;
+    }
+    .header-badge {
+      display: inline-block;
+      background-color: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(96, 165, 250, 0.3);
+    }
+    .header-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+    .header-meta {
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    /* Daily Theme / Executive Summary */
+    .theme-banner {
+      background-color: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      margin: 24px 28px 12px 28px;
+      padding: 16px 20px;
+      border-radius: 0 8px 8px 0;
+    }
+    .theme-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #1d4ed8;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+    .theme-text {
+      font-size: 15px;
+      color: #1e3a8a;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    /* News Items */
+    .content-area {
+      padding: 12px 28px 28px 28px;
+    }
+    .article-card {
+      padding: 22px 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .article-card:last-child {
+      border-bottom: none;
+    }
+    .article-top-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+    .rank-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      background-color: #0f172a;
+      color: #ffffff;
+      border-radius: 50%;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .category-tag {
+      background-color: #f1f5f9;
+      color: #475569;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+    }
+    .source-tag {
+      color: #64748b;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .article-title {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .article-title a {
+      color: #0f172a;
+      text-decoration: none;
+    }
+    .article-title a:hover {
+      color: #2563eb;
+      text-decoration: underline;
+    }
+    .article-summary {
+      font-size: 14px;
+      color: #334155;
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+    .key-points-box {
+      background-color: #f8fafc;
+      border-radius: 6px;
+      padding: 10px 14px 10px 28px;
+      margin-bottom: 14px;
+      border: 1px solid #e2e8f0;
+    }
+    .key-points-list {
+      list-style-type: square;
+      font-size: 13px;
+      color: #475569;
+      line-height: 1.5;
+    }
+    .key-points-list li {
+      margin-bottom: 4px;
+    }
+    .key-points-list li:last-child {
+      margin-bottom: 0;
+    }
+    .article-link-btn {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #2563eb;
+      text-decoration: none;
+      padding: 5px 0;
+    }
+    .article-link-btn:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      padding: 24px 28px;
+      font-size: 12px;
+      color: #64748b;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .footer a {
+      color: #475569;
+      text-decoration: underline;
+    }
+
+    /* Dark Mode Preferences */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #0b0f19;
+        color: #f1f5f9;
+      }
+      .wrapper {
+        background-color: #111827;
+        border-color: #1f2937;
+      }
+      .theme-banner {
+        background-color: #1e293b;
+        border-color: #3b82f6;
+      }
+      .theme-text {
+        color: #bfdbfe;
+      }
+      .article-card {
+        border-color: #1f2937;
+      }
+      .article-title a {
+        color: #f9fafb;
+      }
+      .article-title a:hover {
+        color: #60a5fa;
+      }
+      .article-summary {
+        color: #cbd5e1;
+      }
+      .key-points-box {
+        background-color: #182234;
+        border-color: #1f2937;
+      }
+      .key-points-list {
+        color: #94a3b8;
+      }
+      .category-tag {
+        background-color: #1e293b;
+        color: #94a3b8;
+      }
+      .rank-number {
+        background-color: #3b82f6;
+      }
+      .footer {
+        background-color: #0f172a;
+        border-color: #1f2937;
+        color: #94a3b8;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <!-- Header -->
+    <div class="header">
+      <div class="header-badge">Daily Intelligence Brief</div>
+      <h1 class="header-title">{{ topic_name }}</h1>
+      <div class="header-meta">{{ current_date }} &bull; Curated Top {{ digest.items|length }} Stories</div>
+    </div>
+
+    <!-- Theme / Executive Summary -->
+    {% if digest.daily_theme %}
+    <div class="theme-banner">
+      <div class="theme-title">Today's Focus</div>
+      <div class="theme-text">{{ digest.daily_theme }}</div>
+    </div>
+    {% endif %}
+
+    <!-- Content Items -->
+    <div class="content-area">
+      {% for item in digest.items %}
+      <div class="article-card">
+        <div class="article-top-meta">
+          <span class="rank-number">{{ loop.index }}</span>
+          <span class="category-tag">{{ item.category }}</span>
+          <span class="source-tag">&bull;&nbsp; {{ item.source_name }}</span>
+        </div>
+        <h2 class="article-title">
+          <a href="{{ item.link }}" target="_blank" rel="noopener noreferrer">{{ item.title }}</a>
+        </h2>
+        <p class="article-summary">{{ item.summary }}</p>
+        
+        {% if item.key_points %}
+        <div class="key-points-box">
+          <ul class="key-points-list">
+            {% for pt in item.key_points %}
+            <li>{{ pt }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        <div>
+          <a href="{{ item.link }}" class="article-link-btn" target="_blank" rel="noopener noreferrer">
+            Read full coverage &rarr;
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Automated intelligence brief delivered by <strong>Morning News Bot</strong>.</p>
+      <p>Sources screened: The Hacker News, BleepingComputer, Krebs on Security, Dark Reading, SecurityWeek.</p>
+      <p style="margin-top: 8px; font-size: 11px; color: #94a3b8;">
+        Generated on {{ current_date }} at {{ current_time }} UTC
+      </p>
+    </div>
+  </div>
+</body>
+</html>

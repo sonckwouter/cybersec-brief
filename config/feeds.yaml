@@ -1,0 +1,17 @@
+topics:
+  cyber_security:
+    name: "Cyber Security"
+    description: "Daily intelligence digest on cyber security, vulnerabilities, ransomware, threats and data breaches."
+    max_items: 10
+    lookback_hours: 36
+    feeds:
+      - name: "The Hacker News"
+        url: "https://feeds.feedburner.com/TheHackersNews"
+      - name: "BleepingComputer"
+        url: "https://www.bleepingcomputer.com/feed/"
+      - name: "Krebs on Security"
+        url: "https://krebsonsecurity.com/feed/"
+      - name: "Dark Reading"
+        url: "https://www.darkreading.com/rss.xml"
+      - name: "SecurityWeek"
+        url: "https://www.securityweek.com/feed/"
