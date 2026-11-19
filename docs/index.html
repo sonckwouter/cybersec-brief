@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>CyberSec Brief</title>
+  
+  <!-- PWA & Mobile Metadata -->
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#0f172a">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="CyberSec">
+  <link rel="apple-touch-icon" href="./icons/icon.svg">
+  <link rel="icon" type="image/svg+xml" href="./icons/icon.svg">
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- Sticky Header -->
+  <header class="app-header">
+    <div class="header-top">
+      <div class="brand-wrapper">
+        <img src="./icons/icon.svg" alt="CyberSec Logo" class="app-icon">
+        <h1 class="brand-title">CyberSec Brief</h1>
+      </div>
+      <div class="header-actions">
+        <button id="refreshBtn" class="icon-btn" title="Refresh Feed">🔄</button>
+        <button id="themeToggleBtn" class="icon-btn" title="Toggle Theme">☀️</button>
+      </div>
+    </div>
+    <div class="meta-bar">
+      <span id="dateLabel">Loading edition...</span>
+      <span class="live-pill">
+        <span class="live-dot"></span> DAILY TOP 10
+      </span>
+    </div>
+  </header>
+
+  <div id="pullStatus" class="pull-status">Updating...</div>
+
+  <!-- Category Filter Chips -->
+  <nav id="filterBar" class="filter-bar" aria-label="Category filters"></nav>
+
+  <!-- Main Feed Container -->
+  <main class="container">
+    <!-- Today's Focus Banner -->
+    <section id="focusBanner" class="focus-banner" style="display: none;">
+      <div class="focus-tag">Today's Executive Focus</div>
+      <p id="focusText" class="focus-text"></p>
+    </section>
+
+    <!-- News List -->
+    <div id="feedList" class="feed-list"></div>
+
+    <!-- Empty State -->
+    <div id="emptyState" class="empty-state" style="display: none;">
+      <div class="empty-icon">🛡️</div>
+      <p>No articles to display.</p>
+    </div>
+  </main>
+
+  <!-- Bottom Navigation Bar -->
+  <nav class="bottom-nav">
+    <button id="navFeed" class="nav-item active">
+      <span class="nav-icon">📰</span>
+      <span>Daily Brief</span>
+    </button>
+    <button id="navBookmarks" class="nav-item">
+      <span class="nav-icon">★</span>
+      <span>Saved</span>
+    </button>
+  </nav>
+
+  <script src="./app.js"></script>
+</body>
+</html>

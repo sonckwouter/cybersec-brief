@@ -2,7 +2,7 @@ import pytest
 from src.config import load_config
 from src.fetcher import clean_html, RawArticle
 from src.summarizer import fallback_curation, CuratedArticle, CuratedDigest
-from main import render_templates
+from main import render_templates, build_web_data
 
 
 def test_load_config():
@@ -69,3 +69,29 @@ def test_render_templates():
     assert "CYBER SECURITY" in text
     assert "Critical Kernel Vulnerability Discovered" in text
     assert "Patch immediately available" in text
+
+
+def test_build_web_data():
+    import json
+    digest = CuratedDigest(
+        daily_theme="Testing web data generation.",
+        items=[
+            CuratedArticle(
+                title="Web App Test Article",
+                source_name="SecurityWeek",
+                link="https://securityweek.com/test",
+                category="Ransomware",
+                summary="A test incident.",
+                key_points=["Point 1", "Point 2"],
+            )
+        ],
+    )
+
+    out_file = build_web_data("Cyber Security", digest)
+    assert out_file.exists()
+    content = json.loads(out_file.read_text(encoding="utf-8"))
+    assert content["topic"] == "Cyber Security"
+    assert content["daily_theme"] == "Testing web data generation."
+    assert len(content["items"]) == 1
+    assert content["items"][0]["title"] == "Web App Test Article"
+    assert content["items"][0]["category"] == "Ransomware"

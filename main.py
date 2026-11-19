@@ -1,6 +1,7 @@
 """Main entry point for Morning News Newsletter Generator."""
 
 import argparse
+import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -54,6 +55,29 @@ def render_templates(topic_name: str, digest) -> tuple[str, str]:
     return html_content, text_content
 
 
+def build_web_data(topic_name: str, digest) -> Path:
+    """Generate structured JSON feed for the PWA web app in docs/data/latest.json."""
+    data_dir = BASE_DIR / "docs" / "data"
+    data_dir.mkdir(parents=True, exist_ok=True)
+    out_file = data_dir / "latest.json"
+
+    now_utc = datetime.now(timezone.utc)
+    current_date = now_utc.strftime("%A, %B %d, %Y")
+    current_time = now_utc.strftime("%H:%M")
+
+    payload = {
+        "topic": topic_name,
+        "generated_date": current_date,
+        "generated_time_utc": current_time,
+        "daily_theme": digest.daily_theme,
+        "items": [item.model_dump() for item in digest.items],
+    }
+
+    out_file.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"📱 Web App data feed written to: {out_file.resolve()}")
+    return out_file
+
+
 def main():
     parser = argparse.ArgumentParser(description="Morning News Automated Newsletter Generator")
     parser.add_argument(
@@ -71,6 +95,11 @@ def main():
         "--preview",
         action="store_true",
         help="Generate preview.html locally for visual review",
+    )
+    parser.add_argument(
+        "--send-email",
+        action="store_true",
+        help="Send newsletter via email (off by default, prioritizing web app)",
     )
     parser.add_argument(
         "--to",
@@ -119,38 +148,43 @@ def main():
     for i, it in enumerate(digest.items, 1):
         print(f"  [{i}] ({it.category}) {it.title} - {it.source_name}")
 
-    # 3. Render Templates
+    # 3. Build Web App Data Feed
+    build_web_data(topic.name, digest)
+
+    # 4. Render HTML/Text Templates (for preview or email)
     html_content, text_content = render_templates(topic.name, digest)
 
     # Always generate preview.html for dry-run or preview flags
     if args.dry_run or args.preview:
         preview_file = BASE_DIR / "preview.html"
         preview_file.write_text(html_content, encoding="utf-8")
-        print(f"\n💾 Preview HTML written to: {preview_file.resolve()}")
+        print(f"💾 Preview HTML written to: {preview_file.resolve()}")
 
     if args.dry_run:
-        print("\n🏁 Dry run complete! No email sent.")
+        print("\n🏁 Dry run complete!")
         return
 
-    # 4. Email Dispatch
-    now_utc = datetime.now(timezone.utc)
-    date_str = now_utc.strftime("%b %d")
-    top_story = digest.items[0].title if digest.items else topic.name
-    subject = f"🛡️ [{topic.name} Brief] {top_story} ({date_str})"
+    # 5. Optional Email Dispatch
+    if args.send_email:
+        now_utc = datetime.now(timezone.utc)
+        date_str = now_utc.strftime("%b %d")
+        top_story = digest.items[0].title if digest.items else topic.name
+        subject = f"🛡️ [{topic.name} Brief] {top_story} ({date_str})"
 
-    recipient = args.to or config.email_to
-    if not recipient:
-        print("⚠️ No recipient configured (EMAIL_TO is empty). Skipping email dispatch.")
-        print("Use --dry-run or set EMAIL_TO in your .env / GitHub Secrets.")
-        return
+        recipient = args.to or config.email_to
+        if not recipient:
+            print("⚠️ No recipient configured (EMAIL_TO is empty). Skipping email dispatch.")
+            return
 
-    send_email(
-        subject=subject,
-        html_content=html_content,
-        text_content=text_content,
-        config=config,
-        to_email=recipient,
-    )
+        send_email(
+            subject=subject,
+            html_content=html_content,
+            text_content=text_content,
+            config=config,
+            to_email=recipient,
+        )
+    else:
+        print("\n✨ Web App data updated successfully! (Email dispatch skipped, use --send-email to enable).")
 
 
 if __name__ == "__main__":

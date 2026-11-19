@@ -1,0 +1,19 @@
+{
+  "topic": "Cyber Security",
+  "generated_date": "Thursday, November 19, 2026",
+  "generated_time_utc": "18:09",
+  "daily_theme": "Testing web data generation.",
+  "items": [
+    {
+      "title": "Web App Test Article",
+      "source_name": "SecurityWeek",
+      "link": "https://securityweek.com/test",
+      "category": "Ransomware",
+      "summary": "A test incident.",
+      "key_points": [
+        "Point 1",
+        "Point 2"
+      ]
+    }
+  ]
+}
