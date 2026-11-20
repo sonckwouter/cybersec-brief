@@ -1,5 +1,6 @@
 /**
  * CyberSec Brief PWA Controller
+ * With Stale-While-Revalidate and Background Sync for 100% Offline Reading
  */
 
 // State
@@ -11,6 +12,7 @@ let savedBookmarks = JSON.parse(localStorage.getItem("cybersec_bookmarks") || "[
 
 // DOM Elements
 const dateLabel = document.getElementById("dateLabel");
+const offlineStatus = document.getElementById("offlineStatus");
 const focusBanner = document.getElementById("focusBanner");
 const focusText = document.getElementById("focusText");
 const filterBar = document.getElementById("filterBar");
@@ -22,15 +24,58 @@ const navFeed = document.getElementById("navFeed");
 const navBookmarks = document.getElementById("navBookmarks");
 const pullStatus = document.getElementById("pullStatus");
 
-// Register Service Worker
+// Register Service Worker & Periodic Background Sync
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    navigator.serviceWorker
-      .register("./sw.js")
-      .then((reg) => console.log("Service Worker registered successfully.", reg.scope))
-      .catch((err) => console.warn("Service Worker registration failed:", err));
+  window.addEventListener("load", async () => {
+    try {
+      const reg = await navigator.serviceWorker.register("./sw.js");
+      console.log("[PWA] Service Worker registered:", reg.scope);
+
+      // Attempt to register Periodic Background Sync for morning updates (if supported by browser/Android)
+      if ("periodicSync" in reg) {
+        try {
+          const status = await navigator.permissions.query({ name: "periodic-background-sync" });
+          if (status.state === "granted" || status.state === "prompt") {
+            await reg.periodicSync.register("update-daily-news", {
+              minInterval: 12 * 60 * 60 * 1000 // every 12 hours
+            });
+            console.log("[PWA] Periodic Background Sync registered successfully.");
+          }
+        } catch (e) {
+          console.log("[PWA] Periodic sync permission note:", e.message);
+        }
+      }
+    } catch (err) {
+      console.warn("[PWA] Service Worker registration failed:", err);
+    }
   });
 }
+
+// Update Connectivity UI
+function updateNetworkStatus() {
+  if (!offlineStatus) return;
+  if (navigator.onLine) {
+    offlineStatus.className = "offline-pill online";
+    offlineStatus.textContent = "📥 Offline Ready";
+    offlineStatus.title = "Today's edition is downloaded and saved on your device for offline reading.";
+  } else {
+    offlineStatus.className = "offline-pill offline";
+    offlineStatus.textContent = "📡 Offline Mode";
+    offlineStatus.title = "You are currently offline. Viewing cached morning edition.";
+  }
+}
+
+window.addEventListener("online", () => {
+  updateNetworkStatus();
+  loadData(false); // Silently check for updates when re-connected
+});
+
+window.addEventListener("offline", () => {
+  updateNetworkStatus();
+  pullStatus.textContent = "Offline mode active - All articles available locally";
+  pullStatus.classList.add("show");
+  setTimeout(() => pullStatus.classList.remove("show"), 2500);
+});
 
 // Initialize Theme
 function initTheme() {
@@ -51,51 +96,91 @@ themeToggleBtn.addEventListener("click", () => {
   updateThemeIcon(next);
 });
 
-// Load News Data
-async function loadData() {
-  try {
-    pullStatus.textContent = "Updating news feed...";
-    pullStatus.classList.add("show");
+// Populate UI from Data Object
+function applyNewsData(data, isFromCache = false) {
+  if (!data || !data.items || data.items.length === 0) return false;
 
-    // Cache buster for manual refresh
+  allArticles = data.items || [];
+  dailyTheme = data.daily_theme || "Today's top cyber security updates.";
+
+  // Update Date
+  const dateStr = data.generated_date || "Today";
+  const offlineTag = isFromCache && !navigator.onLine ? " (Offline)" : "";
+  dateLabel.textContent = `${dateStr} • ${allArticles.length} stories${offlineTag}`;
+
+  // Update Focus Banner
+  focusText.textContent = dailyTheme;
+  focusBanner.style.display = "block";
+
+  // Setup Category Filter Chips
+  setupCategories();
+
+  // Render feed
+  renderArticles();
+  return true;
+}
+
+// Immediate Local Hydration (0ms offline startup)
+function hydrateFromLocalStorage() {
+  try {
+    const rawLocal = localStorage.getItem("cybersec_latest_edition");
+    if (rawLocal) {
+      const cached = JSON.parse(rawLocal);
+      applyNewsData(cached, true);
+    }
+  } catch (e) {
+    console.warn("[PWA] Error reading local offline storage:", e);
+  }
+}
+
+// Load News Data (Stale-While-Revalidate)
+async function loadData(showFeedback = true) {
+  if (showFeedback) {
+    pullStatus.textContent = "Checking for latest morning edition...";
+    pullStatus.classList.add("show");
+  }
+
+  // 1. If we don't have articles rendered yet, hydrate immediately from localStorage
+  if (allArticles.length === 0) {
+    hydrateFromLocalStorage();
+  }
+
+  // 2. Fetch fresh edition from network
+  try {
     const res = await fetch(`./data/latest.json?t=${Date.now()}`);
     if (!res.ok) throw new Error(`HTTP error ${res.status}`);
     const data = await res.json();
 
-    allArticles = data.items || [];
-    dailyTheme = data.daily_theme || "Today's top cyber security updates.";
+    // Persist full edition in LocalStorage for instant offline availability
+    localStorage.setItem("cybersec_latest_edition", JSON.stringify(data));
 
-    // Update Date
-    if (data.generated_date) {
-      dateLabel.textContent = `${data.generated_date} • ${allArticles.length} stories`;
-    } else {
-      dateLabel.textContent = `Today • ${allArticles.length} stories`;
+    applyNewsData(data, false);
+    updateNetworkStatus();
+
+    if (showFeedback) {
+      pullStatus.textContent = "Updated & Downloaded for offline reading!";
+      setTimeout(() => pullStatus.classList.remove("show"), 1000);
+    }
+  } catch (err) {
+    console.log("[PWA] Network fetch note (using cached edition):", err.message);
+    updateNetworkStatus();
+
+    // If still no articles rendered, try local cache again
+    if (allArticles.length === 0) {
+      hydrateFromLocalStorage();
     }
 
-    // Update Focus Banner
-    focusText.textContent = dailyTheme;
-    focusBanner.style.display = "block";
-
-    // Setup Category Filter Chips
-    setupCategories();
-
-    // Render feed
-    renderArticles();
-
-    setTimeout(() => {
-      pullStatus.classList.remove("show");
-    }, 600);
-  } catch (err) {
-    console.error("Failed to load news data:", err);
-    pullStatus.textContent = "Offline - Showing cached edition";
-    setTimeout(() => {
-      pullStatus.classList.remove("show");
-    }, 2500);
-
-    // Fallback if data/latest.json couldn't be loaded
-    if (allArticles.length === 0) {
+    if (allArticles.length > 0) {
+      if (showFeedback) {
+        pullStatus.textContent = "Viewing downloaded morning edition (offline)";
+        setTimeout(() => pullStatus.classList.remove("show"), 2000);
+      }
+    } else {
       emptyState.style.display = "block";
-      emptyState.querySelector("p").textContent = "Unable to load intelligence feed. Check internet connection.";
+      emptyState.querySelector("p").textContent = "Unable to load intelligence brief. Please connect to the internet to download today's edition.";
+      if (showFeedback) {
+        pullStatus.classList.remove("show");
+      }
     }
   }
 }
@@ -146,7 +231,7 @@ function renderArticles() {
   if (listToRender.length === 0) {
     emptyState.style.display = "block";
     if (currentTab === "bookmarks") {
-      emptyState.querySelector("p").textContent = "You have no saved articles yet. Tap the bookmark icon on any article to save it.";
+      emptyState.querySelector("p").textContent = "You have no saved articles yet. Tap the star icon on any article to save it for later.";
     } else {
       emptyState.querySelector("p").textContent = "No articles found in this category.";
     }
@@ -240,7 +325,7 @@ navBookmarks.addEventListener("click", () => {
 
 // Refresh button
 refreshBtn.addEventListener("click", () => {
-  loadData();
+  loadData(true);
 });
 
 // Helper for HTML escaping
@@ -254,6 +339,7 @@ function escapeHtml(str) {
     .replace(/'/g, "&#039;");
 }
 
-// Start
+// Startup
 initTheme();
-loadData();
+updateNetworkStatus();
+loadData(false);

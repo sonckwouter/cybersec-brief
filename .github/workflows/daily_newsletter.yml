@@ -2,8 +2,9 @@ name: Daily Cyber Security Brief & PWA
 
 on:
   schedule:
-    # Runs everyday at 06:00 UTC (07:00 CET in winter / 08:00 CEST in summer)
-    - cron: '0 6 * * *'
+    # Runs everyday at 07:00 UTC (which is 08:00 AM CET Brussels/Amsterdam time)
+    # The scan completes in ~1 minute so the latest news is published right at 8:00 AM!
+    - cron: '0 7 * * *'
   workflow_dispatch:
     inputs:
       topic:

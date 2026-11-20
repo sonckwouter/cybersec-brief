@@ -1,7 +1,11 @@
 {
   "topic": "Cyber Security",
   "generated_date": "Friday, November 20, 2026",
+<<<<<<< HEAD
   "generated_time_utc": "14:30",
+=======
+  "generated_time_utc": "15:42",
+>>>>>>> 1e16586 (feat: schedule daily scan at 8:00 AM CET and enable background offline caching)
   "daily_theme": "Today's top cyber security updates and incident reports.",
   "items": [
     {

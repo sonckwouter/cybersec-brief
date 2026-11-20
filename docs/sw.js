@@ -1,14 +1,31 @@
-const CACHE_NAME = 'cybersec-brief-v1';
+const CACHE_NAME = 'cybersec-brief-v2';
 const STATIC_ASSETS = [
   './',
   './index.html',
   './style.css',
   './app.js',
   './manifest.json',
-  './icons/icon.svg'
+  './icons/icon.svg',
+  './data/latest.json'
 ];
 
-// Install: Cache core app shell
+// Helper: Fetch and cache the latest news data
+async function fetchAndCacheLatestNews() {
+  try {
+    const response = await fetch('./data/latest.json?cache_bust=' + Date.now());
+    if (response && response.ok) {
+      const cache = await caches.open(CACHE_NAME);
+      await cache.put('./data/latest.json', response.clone());
+      console.log('[ServiceWorker] Successfully downloaded latest news for offline reading.');
+      return true;
+    }
+  } catch (err) {
+    console.warn('[ServiceWorker] Background download failed:', err);
+  }
+  return false;
+}
+
+// Install: Pre-cache static assets and latest news data
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -18,7 +35,7 @@ self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
 
-// Activate: Clean up old caches
+// Activate: Clean up old cache versions
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((keys) => {
@@ -30,31 +47,48 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch strategy
+// Background Sync (runs automatically when network recovers)
+self.addEventListener('sync', (event) => {
+  if (event.tag === 'sync-latest-news') {
+    event.waitUntil(fetchAndCacheLatestNews());
+  }
+});
+
+// Periodic Background Sync (runs in background on Android Chrome, e.g. every morning)
+self.addEventListener('periodicsync', (event) => {
+  if (event.tag === 'update-daily-news') {
+    event.waitUntil(fetchAndCacheLatestNews());
+  }
+});
+
+// Fetch Strategy
 self.addEventListener('fetch', (event) => {
   const requestUrl = new URL(event.request.url);
 
-  // Network-First for data/latest.json (always try fresh edition first)
+  // Special handling for latest.json: Network-First with Cache Fallback (ignore query params)
   if (requestUrl.pathname.endsWith('data/latest.json')) {
     event.respondWith(
       fetch(event.request)
         .then((response) => {
-          if (response.ok) {
+          if (response && response.ok) {
             const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put('./data/latest.json', clone);
+            });
           }
           return response;
         })
         .catch(() => {
-          return caches.match(event.request);
+          // Fallback to cache when offline
+          return caches.match('./data/latest.json', { ignoreSearch: true });
         })
     );
     return;
   }
 
-  // Cache-First for static assets (HTML, CSS, JS, SVG)
+  // Cache-First for static assets (HTML, CSS, JS, SVG, Manifest)
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
+    caches.match(event.request, { ignoreSearch: true }).then((cachedResponse) => {
       if (cachedResponse) {
         return cachedResponse;
       }

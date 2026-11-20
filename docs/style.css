@@ -136,6 +136,35 @@ body {
   color: var(--text-muted);
 }
 
+.meta-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.offline-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+}
+
+.offline-pill.online {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.offline-pill.offline {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
 .live-pill {
   display: inline-flex;
   align-items: center;
