@@ -1,114 +1,114 @@
 {
   "topic": "Cyber Security",
-  "generated_date": "Sunday, November 22, 2026",
-  "generated_time_utc": "14:57",
+  "generated_date": "Monday, November 23, 2026",
+  "generated_time_utc": "18:50",
   "daily_theme": "Today's top cyber security updates and incident reports.",
   "items": [
     {
-      "title": "OpenRouter Drops 3 Providers After Researchers Catch Months of Prompt Theft at AI Hosting Firms",
+      "title": "Webworm Suspected of Modifying SoftEther VPN to Evade Detection and Hide Remote Access",
       "source_name": "The Hacker News",
-      "link": "https://thehackernews.com/2026/11/openrouter-drops-3-providers-after.html",
+      "link": "https://thehackernews.com/2026/11/webworm-suspected-of-modifying.html",
       "category": "Cyber Security",
-      "summary": "Attackers stole data from inside three AI inference providers for months, and none of the three knew until researchers told them, the industrial cybersecurity company Dragos said this week. Some of the stolen requests were flagged as Zero Data Retent...",
+      "summary": "The China-aligned threat actor known as Webworm is suspected to be using a custom version of the open-source SoftEther VPN Bridge tool in an attempt to remove recognizable detection fingerprints, while disguising it as network-monitoring software to ...",
       "key_points": [
         "Reported by The Hacker News.",
         "Click the link below to read the complete coverage."
       ]
     },
     {
-      "title": "Researchers Demonstrate Ghostscript Sandbox-Escape RCE via Crafted File Uploads in Popular Apps",
+      "title": "⚡ Weekly Recap: VMware 0-Day, Java4Shell, NGINX2Root, Ruby2Shell, and a Whole Lot of Shell Trouble",
       "source_name": "The Hacker News",
-      "link": "https://thehackernews.com/2026/11/researchers-demonstrate-ghostscript.html",
+      "link": "https://thehackernews.com/2026/11/weekly-recap-vmware-0-day-java4shell.html",
       "category": "Cyber Security",
-      "summary": "A now-patched flaw in Ghostscript allows a crafted file to escape the program's security sandbox and run commands on the server that processes it. Ghostscript is the interpreter that many Linux servers use to convert uploaded PDFs, PostScript files, ...",
+      "summary": "A stolen key. A trusted message. A routine update. None of these looks like the start of a major security problem. That's partly why they work. Attackers don't always need to break down a door. Sometimes they just use one that's already open. This we...",
       "key_points": [
         "Reported by The Hacker News.",
         "Click the link below to read the complete coverage."
       ]
     },
     {
-      "title": "A Single Malicious Webpage Let Researchers Hijack Meta Muse and Access Private Chats",
+      "title": "Critical binary-parser Flaw Enables JavaScript Injection via Malicious Parser Definitions",
       "source_name": "The Hacker News",
-      "link": "https://thehackernews.com/2026/11/a-single-malicious-webpage-let.html",
+      "link": "https://thehackernews.com/2026/11/critical-binary-parser-flaw-enables.html",
       "category": "Cyber Security",
-      "summary": "A malicious webpage could extract a Meta Muse user's private conversations and stored memories from the assistant without triggering any approval prompt, researchers have shown. The same attack could be extended to reach the credentials Muse stores f...",
+      "summary": "A critical security flaw has been disclosed in the popular binary-parser library that could allow an attacker who controls parser definitions to execute arbitrary code. The vulnerability, tracked as CVE-2026-134814 (CVSS score: 9.2 / 8.1), is a case ...",
       "key_points": [
         "Reported by The Hacker News.",
         "Click the link below to read the complete coverage."
       ]
     },
     {
-      "title": "GnuPG Warns Critical GPGME Flaw Could Expose App Data via Malicious OpenPGP Keys",
+      "title": "Hackers Exploit Critical ScreenConnect Flaw to Hijack MSP Technician PCs Without Warning",
       "source_name": "The Hacker News",
-      "link": "https://thehackernews.com/2026/11/gnupg-warns-critical-gpgme-flaw-could.html",
+      "link": "https://thehackernews.com/2026/11/hackers-exploit-critical-screenconnect.html",
       "category": "Cyber Security",
-      "summary": "A malicious OpenPGP key with an unusually long user ID can trigger a critical memory bug in GPGME, the standard library that programs use to work with GnuPG. The GnuPG project warned yesterday that the flaw could be used to steal data from affected a...",
+      "summary": "Threat actors are exploiting a now-patched security flaw in ConnectWise ScreenConnect to target managed service provider (MSP) servers. The activity revolves around CVE-2026-84869 (CVSS score: 9.9), a critical ScreenConnect client flaw that allows a ...",
       "key_points": [
         "Reported by The Hacker News.",
         "Click the link below to read the complete coverage."
       ]
     },
     {
-      "title": "Attackers' AI Agents Found a Zero-Day in Medical-Imaging Software and Gained Root Access",
+      "title": "N-able Discloses Critical Mail Assure Vulnerability Found During Breach Investigation",
       "source_name": "The Hacker News",
-      "link": "https://thehackernews.com/2026/11/attackers-ai-agents-found-zero-day-in.html",
+      "link": "https://thehackernews.com/2026/11/n-able-discloses-critical-mail-assure.html",
       "category": "Cyber Security",
-      "summary": "Suspected China-linked hackers used autonomous AI agents to find a previously unknown flaw in MONAI Label, an open-source medical imaging server, and gain root access to a university server, Amazon Threat Intelligence said this week. The flaw allows ...",
+      "summary": "N-able yesterday disclosed a critical flaw it found while investigating the breach of its Mail Assure and SpamExperts Hosted Cloud, an email filtering service it runs for managed service providers. The bug, tracked as CVE-2026-134624, is a server-sid...",
       "key_points": [
         "Reported by The Hacker News.",
         "Click the link below to read the complete coverage."
       ]
     },
     {
-      "title": "Signal Blocks AI Agents From Reading Private Chats via Screenshots on Android and iOS",
+      "title": "Hackers Exploit Critical ASP.NET Anti-CSRF Library Flaw Allowing Unauthenticated RCE",
       "source_name": "The Hacker News",
-      "link": "https://thehackernews.com/2026/11/signal-blocks-ai-agents-from-reading.html",
+      "link": "https://thehackernews.com/2026/11/hackers-exploit-critical-aspnet-anti.html",
       "category": "Cyber Security",
-      "summary": "Signal has announced that it will restrict screenshots by default to stop artificial intelligence (AI) agents from reading private chats on Android and iOS devices, but conceded that the protection is \"incomplete.\" The feature applies to agentic syst...",
+      "summary": "Cybersecurity researchers have urged users to discontinue using a legacy ASP.NET anti-CSRF library named Idunno.AntiCsrf (\"Idunno.AntiCsrf.dll\") following the discovery of a critical vulnerability that has been exploited in the wild. The vulnerabilit...",
       "key_points": [
         "Reported by The Hacker News.",
         "Click the link below to read the complete coverage."
       ]
     },
     {
-      "title": "Hackers Exploit Critical VMware, Cisco, and Apache Flaws as Espionage Attacks Emerge",
+      "title": "Hackers Exploited GL.iNet Cloud Flaw to Install Malware on Routers and KVM Devices",
       "source_name": "The Hacker News",
-      "link": "https://thehackernews.com/2026/11/hackers-exploit-critical-vmware-cisco.html",
+      "link": "https://thehackernews.com/2026/11/hackers-exploited-glinet-cloud-flaw-to.html",
       "category": "Cyber Security",
-      "summary": "The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Friday added four flaws impacting Apache Roller, Cisco Expressway, SAP NetWeaver, and Broadcom VMware vCenter to its Known Exploited Vulnerabilities (KEV), citing evidence of active ...",
+      "summary": "Hackers exploited a vulnerability in GL.iNet's GoodCloud remote management service to install malware on some customer routers and KVM devices, the maker of travel routers and remote-access KVM hardware said in a security notice updated today. The co...",
       "key_points": [
         "Reported by The Hacker News.",
         "Click the link below to read the complete coverage."
       ]
     },
     {
-      "title": "Rackspace Spot breach let hackers access customer Kubernetes secrets",
+      "title": "AI-Assisted Cyber Attacks Trigger Unauthorized Payments at Indian Banks and Fintech Firms",
+      "source_name": "The Hacker News",
+      "link": "https://thehackernews.com/2026/11/ai-assisted-cyberattacks-trigger.html",
+      "category": "Cyber Security",
+      "summary": "The Indian Computer Emergency Response Team (CERT-In) has warned that threat actors are carrying out artificial intelligence (AI)-assisted cyber attacks targeting information and communication technology (ICT) assets in the country. This unsanctioned...",
+      "key_points": [
+        "Reported by The Hacker News.",
+        "Click the link below to read the complete coverage."
+      ]
+    },
+    {
+      "title": "Spanish LaLiga confirms hackers stole soccer fans’ personal data",
       "source_name": "BleepingComputer",
-      "link": "https://www.bleepingcomputer.com/news/security/rackspace-spot-breach-let-hackers-access-customer-kubernetes-secrets/",
+      "link": "https://www.bleepingcomputer.com/news/security/spanish-laliga-confirms-hackers-stole-soccer-fans-personal-data/",
       "category": "Cyber Security",
-      "summary": "Rackspace warned customers that hackers breached its Rackspace Spot cloud platform using compromised credentials, allowing them to deploy unauthorized workloads and access Kubernetes secrets in customer clusters. [...]",
+      "summary": "LaLiga, Spain's top men's football league, disclosed a data breach that exposed personal information belonging to users of its services and those of some affiliated clubs. [...]",
       "key_points": [
         "Reported by BleepingComputer.",
         "Click the link below to read the complete coverage."
       ]
     },
     {
-      "title": "Microsoft Entra Connect Health flaw exploited to steal tenant data",
+      "title": "GlobeTopper loses $2.5 million after hackers steal $70k in gift cards",
       "source_name": "BleepingComputer",
-      "link": "https://www.bleepingcomputer.com/news/security/microsoft-entra-connect-health-flaw-exploited-to-steal-tenant-data/",
+      "link": "https://www.bleepingcomputer.com/news/security/globetopper-loses-25-million-after-hackers-steal-70k-in-gift-cards/",
       "category": "Cyber Security",
-      "summary": "Microsoft is warning organizations that it suffered a data breach after attackers exploited a vulnerability in its Entra Connect Health service to gain unauthorized access to administrator email addresses and tenant configuration information. [...]",
-      "key_points": [
-        "Reported by BleepingComputer.",
-        "Click the link below to read the complete coverage."
-      ]
-    },
-    {
-      "title": "BADBOX botnet returns with record-breaking 40 billion daily ad requests",
-      "source_name": "BleepingComputer",
-      "link": "https://www.bleepingcomputer.com/news/security/badbox-30-botnet-returns-with-record-breaking-40-billion-daily-ad-requests/",
-      "category": "Cyber Security",
-      "summary": "The BADBOX malware found in a broad range of generic Android TV boxes has returned to large-scale ad-fraud operations following last year's disruptions. [...]",
+      "summary": "A cyberattack disrupted operations at B2B top-up solutions provider GlobeTopper, causing an estimated $2.5 million in lost revenue, while the attacker redeemed digital gift cards worth $70,000. [...]",
       "key_points": [
         "Reported by BleepingComputer.",
         "Click the link below to read the complete coverage."
