@@ -1,15 +1,92 @@
 {
   "topic": "Cyber Security",
-  "generated_date": "Thursday, November 26, 2026",
-  "generated_time_utc": "17:25",
+  "generated_date": "Friday, November 27, 2026",
+  "generated_time_utc": "17:03",
   "daily_theme": "Today's top cyber security updates and incident reports.",
   "items": [
+    {
+      "title": "Suspected Vietnam-Linked Hackers Target Southeast Asia in South China Sea Espionage Campaign",
+      "source_name": "The Hacker News",
+      "link": "https://thehackernews.com/2026/11/suspected-vietnam-linked-hackers-target.html",
+      "category": "Cyber Security",
+      "summary": "A Vietnam-sponsored hacking group has been attributed to attacks targeting Southeast Asian military, government, and legislative organizations with an aim to gather intelligence on South China Sea defense and military agreements. The previously undoc...",
+      "key_points": [
+        "Reported by The Hacker News.",
+        "Click the link below to read the complete coverage."
+      ]
+    },
+    {
+      "title": "Microsoft Store App Found Delivering Vinci RAT Capable of Remote System Control",
+      "source_name": "The Hacker News",
+      "link": "https://thehackernews.com/2026/11/microsoft-store-app-found-delivering.html",
+      "category": "Cyber Security",
+      "summary": "Cybersecurity researchers have disclosed details of a cyber attack in which a threat actor leveraged a Microsoft Store application to deliver a remote access trojan (RAT) called Vinci RAT. The intrusion, according to eSentire, begins with a redirecti...",
+      "key_points": [
+        "Reported by The Hacker News.",
+        "Click the link below to read the complete coverage."
+      ]
+    },
+    {
+      "title": "How to Keep Your Security Picture Current When Attackers Move at AI Speed",
+      "source_name": "The Hacker News",
+      "link": "https://thehackernews.com/2026/11/how-to-keep-your-security-picture.html",
+      "category": "Cyber Security",
+      "summary": "Most security metrics are not built to be used. They are built to be shown. Somewhere between the quarterly review and the next status update, a set of numbers gets assembled that looks reassuring in a room and tells almost no one what is actually ha...",
+      "key_points": [
+        "Reported by The Hacker News.",
+        "Click the link below to read the complete coverage."
+      ]
+    },
+    {
+      "title": "Hackers Trojanize Official Q-Dir and DesktopOK Downloads to Deliver Remote Access Malware",
+      "source_name": "The Hacker News",
+      "link": "https://thehackernews.com/2026/11/hackers-trojanize-official-q-dir-and.html",
+      "category": "Cyber Security",
+      "summary": "Cybersecurity researchers have disclosed details of a software supply chain attack that has tampered with Q-Dir and DesktopOK installation files distributed via the official SoftwareOK website. \"Evidence indicates that malicious files were generated ...",
+      "key_points": [
+        "Reported by The Hacker News.",
+        "Click the link below to read the complete coverage."
+      ]
+    },
+    {
+      "title": "Switzerland Confirms AI-Assisted Cyberattacks Breached Critical Infrastructure Operators",
+      "source_name": "The Hacker News",
+      "link": "https://thehackernews.com/2026/11/switzerland-confirms-ai-assisted.html",
+      "category": "Cyber Security",
+      "summary": "Attackers using AI agents have broken into computer systems at Swiss organizations in four of five confirmed attacks, the first such cases in the country, the country's cybersecurity agency said yesterday. Three of the attacks targeted critical infra...",
+      "key_points": [
+        "Reported by The Hacker News.",
+        "Click the link below to read the complete coverage."
+      ]
+    },
+    {
+      "title": "Unpatched Cacti Zero-Day Enables RCE in Just Four HTTP Requests via Guest Access",
+      "source_name": "The Hacker News",
+      "link": "https://thehackernews.com/2026/11/unpatched-cacti-zero-day-enables-rce-in.html",
+      "category": "Cyber Security",
+      "summary": "Details have emerged about a new zero-day vulnerability in Cacti, an open-source network monitoring tool, that could be exploited to achieve remote code execution. The proof-of-concept (PoC) exploit, which has yet to be assigned a CVE identifier, has...",
+      "key_points": [
+        "Reported by The Hacker News.",
+        "Click the link below to read the complete coverage."
+      ]
+    },
+    {
+      "title": "ThreatsDay: 10M NGINX Services at Risk, 250+ Malicious Extensions, AI Server Hijacking + 17 More Stories",
+      "source_name": "The Hacker News",
+      "link": "https://thehackernews.com/2026/11/threatsday-250-rogue-extensions-10m.html",
+      "category": "Cyber Security",
+      "summary": "A website can look perfectly fine to the person running it. Log out, visit the same page, and things might look different. Something similar is happening with browser extensions, where even the way you find and install one can change what it does. Ch...",
+      "key_points": [
+        "Reported by The Hacker News.",
+        "Click the link below to read the complete coverage."
+      ]
+    },
     {
       "title": "North Korea-Linked PolinRider Poisons Over 7,600 GitHub Repositories to Spread Malware",
       "source_name": "The Hacker News",
       "link": "https://thehackernews.com/2026/11/north-korea-linked-polinrider-poisons.html",
       "category": "Cyber Security",
-      "summary": "The threat actors behind the PolinRider campaign have been observed planting a Python loader in GitHub repositories, as evidence emerges that the activity may have started as far back as February 2025. \"The loader hides in a small utils package or in...",
+      "summary": "The threat actors behind the PolinRider campaign have compromised over 7,600 GitHub repositories, in some cases planting a Python loader capable of delivering next-stage payloads, as evidence emerges that the activity may have started as far back as ...",
       "key_points": [
         "Reported by The Hacker News.",
         "Click the link below to read the complete coverage."
@@ -32,83 +109,6 @@
       "link": "https://thehackernews.com/2026/11/1password-hacked-customer-data-and.html",
       "category": "Cyber Security",
       "summary": "Popular password management software 1Password on Wednesday disclosed a security incident involving its backend systems that led to the unauthorized access of some customer information, but emphasized that customer password vaults and other secrets w...",
-      "key_points": [
-        "Reported by The Hacker News.",
-        "Click the link below to read the complete coverage."
-      ]
-    },
-    {
-      "title": "Drupal Warns of New Highly Critical Site Takeover Vulnerability Under Active Exploitation",
-      "source_name": "The Hacker News",
-      "link": "https://thehackernews.com/2026/11/drupal-warns-of-new-highly-critical.html",
-      "category": "Cyber Security",
-      "summary": "Drupal has warned of a new \"highly critical\" security flaw impacting Drupal core that it said has been exploited in the wild. The vulnerability, tracked as CVE-2026-136716 (CVSS score: N/A), has been described as a case of improper checking for unusu...",
-      "key_points": [
-        "Reported by The Hacker News.",
-        "Click the link below to read the complete coverage."
-      ]
-    },
-    {
-      "title": "Hackers Exploit 10 Vulnerabilities Across Mitel, Juniper, Vates, and Danfoss Products",
-      "source_name": "The Hacker News",
-      "link": "https://thehackernews.com/2026/11/hackers-exploit-10-vulnerabilities.html",
-      "category": "Cyber Security",
-      "summary": "The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Wednesday added 10 security flaws to its Known Exploited Vulnerabilities (KEV) catalog, including five vulnerabilities impacting Mitel MiCollab that were disclosed last week. The Mit...",
-      "key_points": [
-        "Reported by The Hacker News.",
-        "Click the link below to read the complete coverage."
-      ]
-    },
-    {
-      "title": "13 Malicious NuGet Packages Turn Fake .NET Job Assessments Into Malware Delivery Traps",
-      "source_name": "The Hacker News",
-      "link": "https://thehackernews.com/2026/11/13-malicious-nuget-packages-turn-fake.html",
-      "category": "Cyber Security",
-      "summary": "Cybersecurity researchers have discovered 13 malicious NuGet packages that are designed to target Windows.NET developers under the guise of a fake take-home job assessment. \"Most of the packages pose as WinUI 3 and WPF [Windows Presentation Foundatio...",
-      "key_points": [
-        "Reported by The Hacker News.",
-        "Click the link below to read the complete coverage."
-      ]
-    },
-    {
-      "title": "Hackers Exploit Two GeoServer Flaws as Researchers Warn of Unauthenticated RCE Chains",
-      "source_name": "The Hacker News",
-      "link": "https://thehackernews.com/2026/11/hackers-exploit-two-geoserver-flaws-as.html",
-      "category": "Cyber Security",
-      "summary": "Threat actors are actively exploiting two newly patched security flaws in GeoServer, according to watchTowr. The vulnerabilities in question are CVE-2026-120705 and CVE-2026-129243, details of which are below - CVE-2026-120705 (CVSS score: 8.6) - An ...",
-      "key_points": [
-        "Reported by The Hacker News.",
-        "Click the link below to read the complete coverage."
-      ]
-    },
-    {
-      "title": "U.S. Treasury's Financial Crimes Agency Takes Some Systems Offline After Cyber Intrusion",
-      "source_name": "The Hacker News",
-      "link": "https://thehackernews.com/2026/11/us-treasurys-fincen-takes-some-systems.html",
-      "category": "Cyber Security",
-      "summary": "The U.S. Treasury Department's Financial Crimes Enforcement Network (FinCEN) has been hit by a cybersecurity incident that resulted in \"unauthorized access to a limited subset of its systems,\" the bureau said on Tuesday. As a precaution, it has taken...",
-      "key_points": [
-        "Reported by The Hacker News.",
-        "Click the link below to read the complete coverage."
-      ]
-    },
-    {
-      "title": "Credential Remediation Is Slow When You Don’t Know What Will Break",
-      "source_name": "The Hacker News",
-      "link": "https://thehackernews.com/2026/11/credential-remediation-is-slow-when-you.html",
-      "category": "Cyber Security",
-      "summary": "TL;DR More than 64% still valid after four years: GitGuardian’s State of Secrets Sprawl 2026 found that most valid secrets discovered in 2022 still worked in January 2026, because teams stall on what a revoke will break. Validity-only triage misses 4...",
-      "key_points": [
-        "Reported by The Hacker News.",
-        "Click the link below to read the complete coverage."
-      ]
-    },
-    {
-      "title": "Drupal Fail2Install Exploit Details Emerge as Critical RCE Flaw Faces Active Exploitation",
-      "source_name": "The Hacker News",
-      "link": "https://thehackernews.com/2026/11/drupal-fail2install-exploit-details.html",
-      "category": "Cyber Security",
-      "summary": "The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Tuesday added a critical flaw impacting Drupal to its Known Exploited Vulnerabilities (KEV) catalog, requiring federal agencies to apply the fixes by November 27, 2026. The vulnerabi...",
       "key_points": [
         "Reported by The Hacker News.",
         "Click the link below to read the complete coverage."
